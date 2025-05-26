@@ -1,48 +1,77 @@
-# Directory Size Analyzer
+# SpaceSaver
 
-A graphical tool to visualize and analyze directory sizes on your system.
+A directory size analysis tool with GUI that helps you visualize disk space usage.
 
 ## Features
 
-- Interactive GUI for directory selection and analysis
-- Visual representation of subdirectory sizes using pie charts
-- Real-time progress tracking during directory scanning
-- Ability to analyze multiple directories in a single session
-- Automatic sorting of directories by size
-- Colorful visualization with size labels
+- Analyze directory sizes with an interactive GUI
+- Visualize directory sizes with pie charts
+- Easy-to-use interface
+
+## Installation
+
+### Option 1: Install from source
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/SpaceSaver.git
+cd SpaceSaver
+
+# Install the package
+pip install -e .
+```
+
+### Option 2: Run directly
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/SpaceSaver.git
+cd SpaceSaver
+
+# Run the application
+python -m spacesaver
+```
+
+## Usage
+
+After installation, you can run the application in two ways:
+
+1. From the command line:
+   ```
+   spacesaver
+   ```
+
+2. As a Python module:
+   ```python
+   from spacesaver import DirectoryAnalyzer
+   import tkinter as tk
+   
+   root = tk.Tk()
+   app = DirectoryAnalyzer(root)
+   root.mainloop()
+   ```
 
 ## Requirements
 
 - Python 3.6+
-- Required packages:
-  - matplotlib
-  - tkinter (usually comes with Python)
+- matplotlib
+- tkinter (usually comes with Python)
 
-## Installation
+### Linux-specific Requirements
 
-1. Ensure Python 3.6+ is installed on your system
-2. Install required packages:
-   ```
-   pip install matplotlib
-   ```
+On Linux, you may need to install tkinter separately:
 
-## Usage
+```bash
+# For Debian/Ubuntu
+sudo apt-get install python3-tk
 
-1. Run the script:
-   ```
-   python get-directory-gui.py
-   ```
-2. Click the "Select Directory" button
-3. Choose a directory to analyze
-4. View the pie chart showing subdirectory sizes
-5. Click "Select Directory" again to analyze a different directory
+# For Fedora
+sudo dnf install python3-tkinter
 
-## How It Works
+# For Arch Linux
+sudo pacman -S tk
+```
 
-The application recursively scans the selected directory and calculates the size of each subdirectory. It then displays the results in a pie chart, with each slice representing a subdirectory. The size of each slice is proportional to the size of the corresponding subdirectory.
+## License
 
-## Limitations
-
-- Very large directories may take time to scan
-- Permission errors may prevent scanning some directories
-- Files directly in the selected directory are not included in the analysis
+This project is licensed under the terms of the MIT license.

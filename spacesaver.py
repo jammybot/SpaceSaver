@@ -1,8 +1,12 @@
+"""
+SpaceSaver - A directory size analysis tool.
+This module provides a portable way to analyze directory sizes with a GUI.
+"""
+
 import os
 import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import filedialog, messagebox
-from matplotlib.colors import to_rgba
 import random
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
@@ -58,14 +62,24 @@ def generate_colors(n):
 
 
 class DirectoryAnalyzer:
-    def __init__(self, root):
-        self.root = root
+    def __init__(self, root=None):
+        """
+        Initialize the DirectoryAnalyzer.
+        If root is None, a new Tk root window will be created.
+        """
+        if root is None:
+            self.root = tk.Tk()
+            self.should_run_mainloop = True
+        else:
+            self.root = root
+            self.should_run_mainloop = False
+            
         self.root.title("Directory Size Analyzer")
         self.root.geometry("800x600")
         self.root.minsize(600, 400)
         
         # Create main frame
-        self.main_frame = tk.Frame(root)
+        self.main_frame = tk.Frame(self.root)
         self.main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         
         # Create button frame
@@ -182,9 +196,18 @@ class DirectoryAnalyzer:
         self.canvas = FigureCanvasTkAgg(fig, master=self.plot_frame)
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+    
+    def run(self):
+        """Run the application main loop if needed"""
+        if self.should_run_mainloop:
+            self.root.mainloop()
+
+
+def main():
+    """Entry point for the application"""
+    app = DirectoryAnalyzer()
+    app.run()
 
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = DirectoryAnalyzer(root)
-    root.mainloop()
+    main()
